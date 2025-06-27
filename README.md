@@ -1,2 +1,5 @@
 # ImageToCommentConverter
-Python snippet that converts a simple image ( for example a paint draw ) in a block of code, given the specific language.
+Python snippet that converts a simple image in a block of code, given the specific language.
+
+Images could be simple geometrical items, drawn with Paint, or even something more complex.
+
