@@ -21,9 +21,8 @@ def image_to_csharp_comments(image_path, language):
 		
 		 # Calculate proportions for resizing
 		original_width, original_height = img.size
-		aspect_ratio = original_height / original_width
 		
-		result_with_ratio = find_min_feature_size(complete_img_array, aspect_ratio)
+		result_with_ratio = find_min_feature_size(complete_img_array)
 		output_width = result_with_ratio["suggested_width"]
 		output_height = result_with_ratio["suggested_height"]
 
@@ -102,18 +101,14 @@ def generate_comment_given_language(img_array, language):
 	return ascii_art
 
 
-def find_min_feature_size(img_array, target_aspect_ratio):
+def find_min_feature_size(img_array):
 	"""
 	Finds the minimum size (width/height) of black (0) and white (255) pixel features.
-	With target_aspect_ratio to adapt the size to maintain it.
 	
 	Args:
 		img_array: np.array of the image (0-255).
-		target_aspect_ratio: Desired aspect ratio (width/height).
 	
 	Returns:
-		min_width_black, min_height_black: Minimum sizes for black features.
-		min_width_white, min_height_white: Minimum sizes for white features.
 		suggested_width, suggested_height: Suggested sizes (with aspect ratio).
 	"""
 	# Initialize minimums
@@ -151,27 +146,16 @@ def find_min_feature_size(img_array, target_aspect_ratio):
 	# Calculate global minimums (black and white)
 	global_min_width = min(min_width_black, min_width_white)
 	global_min_height = min(min_height_black, min_height_white)
-	
-	# If required, adapt to aspect ratio
-	current_aspect = img_array.shape[0] / img_array.shape[1]
-	if current_aspect > target_aspect_ratio:
-		# Width dominant: reduce height
-		suggested_height = img_array.shape[0] / (max(int(global_min_width / target_aspect_ratio), global_min_height))
-		suggested_width = img_array.shape[1] / (global_min_width)
-	else:
-		# Height dominant: reduce width
-		suggested_width = img_array.shape[1] / (max(int(global_min_height * target_aspect_ratio), global_min_width))
-		suggested_height = img_array.shape[0] / (global_min_height)
+	global_min = min(global_min_width, global_min_height)
+
+	suggested_width = img_array.shape[1] / (global_min)
+	suggested_height = img_array.shape[0] / (global_min)
 	
 	# Compensate for character height
 	suggested_width = suggested_width / 2
 	suggested_height = suggested_height / 2
 
 	return {
-		"min_width_black": min_width_black if min_width_black != float('inf') else 0,
-		"min_height_black": min_height_black if min_height_black != float('inf') else 0,
-		"min_width_white": min_width_white if min_width_white != float('inf') else 0,
-		"min_height_white": min_height_white if min_height_white != float('inf') else 0,
 		"suggested_width": int(suggested_width),
 		"suggested_height": int(suggested_height) 
 	}
