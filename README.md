@@ -1,8 +1,11 @@
 # ImageToCommentConverter
 Python snippet that converts a simple image in a block of code, given the specific language.
 
-Images could be simple geometrical items, drawn with Paint, or even something more complex. *Be careful* more complex images and higher resolution would create a bigger comment.
+Images could be simple geometrical items, drawn with Paint, or even something more complex. *Be careful* more complex images, thinner lines and higher resolution would create a bigger comment.
 
+![Example1](images/example1.png)
+![Example2](images/example2.png)
+![Example3](images/example3.png)
 
 Enjoy!
 
