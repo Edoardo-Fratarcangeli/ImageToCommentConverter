@@ -194,7 +194,7 @@ if __name__ == "__main__":
 	input_image = input("Enter the path to the PNG image: ")
 	language = input("Enter the target language (e.g. c#, python, c, cpp, java, rust, js, go, ...): ").strip().lower()
 
-	output_file_name = "output_comments.cs"
+	output_file_name = "output_comments.txt"
 	output_file = os.path.join(os.path.dirname(input_image), output_file_name)
 	
 	result = image_to_csharp_comments(input_image, language)
