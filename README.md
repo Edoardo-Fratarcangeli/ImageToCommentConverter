@@ -10,7 +10,7 @@ Images could be simple geometrical items, drawn with Paint, or even something mo
 ![Example3](images/example3.png)
 
 ### Startup Guide
-- Download the repo
+- Download the repo or even just .py code
 - Build the solution
 - Start .py file
 - Follow instructions
