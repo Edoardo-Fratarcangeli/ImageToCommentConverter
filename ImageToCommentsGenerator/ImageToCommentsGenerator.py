@@ -187,7 +187,6 @@ if __name__ == "__main__":
 		f.write(result)
 	
 	print(f"C# comment file successfully generated: {output_file}")
-	print(f"Powered by AI. ;)")
 	
 	openFile = str_to_bool(input("Do you want to open it?"))
 
