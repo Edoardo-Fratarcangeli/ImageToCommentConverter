@@ -5,7 +5,6 @@ Images could be simple geometrical items, drawn with Paint, or even something mo
 
 ## Startup Guide
 - Download the repo or even just .py code
-- Build the solution
 - Start .py file
 - Follow instructions
 - Output file would appear in the same directory of the given image, in a output_comments.txt file.
